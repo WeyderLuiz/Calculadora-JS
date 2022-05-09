@@ -10,7 +10,7 @@ function insert(num){
     if(operations.includes(lastCaracter) && operations.includes(num)){
         return;
     }
-    
+
     document.getElementById('result').innerHTML = number + num;
 }
 
@@ -23,11 +23,18 @@ function back() {
     document.getElementById('result').innerHTML = result.substring(0, result.length - 1);
 }
 
-function calculate(){
+function calculate() {
     const result = document.getElementById('result').innerHTML;
-    if(result){
-        document.getElementById('result').innerHTML = eval(result);
-    } else {
-        document.getElementById('result').innerHTML = 'Digite os valores...';
+  
+    if (!result) {
+      document.getElementById('result').innerHTML = 'Digite os valores...';
     }
+  
+    let calc = eval(result);
+  
+    if (!Number.isInteger(calc)) {
+      calc = calc.toFixed(2)
+    }
+  
+    document.getElementById('result').innerHTML = calc;
 }
